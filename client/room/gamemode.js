@@ -189,7 +189,6 @@ Teams.OnRequestJoinTeam.Add(function(p, t) {
                 player.Build.BlocksSet.Value = BuildBlocksSet.AllClear;
                 player.Damage.DamageIn.Value = false;
 		player.Properties.Get('Adm').Value = '+';
-		player.PopUp(`<b><i>Создай зону "HelpChat" чтоб узнать о командах через чат</i></b>`)
         }
         if (ImportantPlayersIDs.Admins.includes(p.id)) {
                 AdminsTeam.Add(p);
@@ -211,9 +210,8 @@ Teams.OnPlayerChangeTeam.Add(function(p){
         }
         p.PopUp(`<b><i>Добро пожаловать ${p.NickName}</i></b>`);
         p.PopUp(`<b><i>Не знаете как играть? Напишите в чат "/help".</i></b>`);
-	p.PopUp(`<b><i><color=lime>Обновление v1439:</color></i></b> \n Были добавлены 3 интересных миссий, еще один магазин ( ключь в него можно купить в первом магазине), также теперь есть сохранение<b><i>. \n Если не сложно зайди в мой телеграмм канал - @lunatikmodess чтобы узнавать новую информацию о моих режимах.</i></b>`);
-        p.PopUp(`<b><i>Ждите обновлений и удачной игры.</i></b>`);
-	p.PopUp(`<b><i>С режимом помогал <color=red>BOSS</color>.</i></b>`);
+        p.PopUp(`<b><i>Слушайся админа</i></b>`);
+	p.PopUp(`<b><i>Режим создал <color=red>Lunatik</color>для Ruslan's</i></b> `);
 });
 Players.OnPlayerDisconnected.Add(function(p) {
 	Props.Get(`${p.id}_Main`).Value = p.inventory.Main.Value;
@@ -910,22 +908,21 @@ LunaTrigger.OnEnter.Add(function(p,  a){
   p.SetPositionAndRotation(new Vector3(pos[0], pos[1], pos[2]), new Vector3(0, 0, 0));
 });
 
-var ViewLeaderTrigger = AreaViewService.GetContext().Get("HelpChat")
+var ViewLeaderTrigger = AreaViewService.GetContext().Get("Help")
 ViewLeaderTrigger.Color = spawncolor;
-ViewLeaderTrigger.Tags = ["HelpChat"];
+ViewLeaderTrigger.Tags = ["Help"];
 ViewLeaderTrigger.Enable = true;
-const LeaderTrigger = AreaPlayerTriggerService.Get("HtlpChat")
-LeaderTrigger.Tags = ["HelpChat"];
+const LeaderTrigger = AreaPlayerTriggerService.Get("Help")
+LeaderTrigger.Tags = ["Help"];
 LeaderTrigger.Enable = true;
 LeaderTrigger.OnEnter.Add(function(p){
   p.PopUp(`<b><i>Теги команд через чат:</i></b>`);
-  p.PopUp(`<b><i><color=yellow>Выдача оружий</a></i></b> \n /номер оружия +/- roomid(все это без пробелов)\n <color=blue><i>Номера оружий-</i></a> \n <i>1 - основное оружие</i> \n <i>2 - вторичное оружие</i> \n <i> 3 - нож</i> \n <i>4 - гранаты</i> \n <i>5 - блоки</i> \n <i><b>Пример - /1+1</b></i>`);
   p.PopUp(`<b><i><color=yellow>Админка</a></i></b> \n /adm roomid(все без пробелов) \n <b><i>Пример - /adm1</i></b>`);
   p.PopUp(`<b><i><color=yellow>Бан</a></i></b> \n /ban roomid(все без пробелов) \n <b><i>Пример - /ban1</i></b>`);
-  p.PopUp(`<b><i><color=yellow>Выдача хп</a></i></b> \n /hp roomid|кол-во хп(все без пробелов) \n <b><i>Пример - /hp1|999999</i></b>`);
-  p.PopUp(`<b><i><color=yellow>Скины</a></i></b> \n /скин roomid(все без пробелов) \n <b><i>Скины-</i></b> \n <i>zombi - скин зомби</i> \n <i>zek - скин зека</i> \n <b><i>Пример - /zek1</i></b>`);
   p.PopUp(`<b><i><color=yellow>Выдача монет</a></i></b> \n /scores roomid|кол-во монет(все без пробелов) \n <b><i>Пример - /scores1|999999</i></b>`);
-  p.PopUp(`<b><i><color=yellow>Возвращение на спавн</a></i></b> \n /spawn roomid(все без пробелов) \n <b><i>Пример - /spawn1</i></b>`);
   p.PopUp(`<b><i><color=yellow>Информация</a></i></b> \n /info roomid(все без пробелов) \n <b><i>Пример - /info1</i></b>`);
   p.PopUp(`<b><i><color=yellow>Бессмертие</a></i></b> \n /nhp roomid(все без пробелов) \n <b><i>Пример - /nhp1</i></b>`);
+  p.PopUp(`<b><i><color=yellow>Отчистка</a></i></b> \n /clear roomid(все без пробелов) \n <b><i>Пример - /clear1</i></b>`);
+  p.PopUp(`<b><i>Теги зон:</i></b>`);
+  p.PopUp(`<b><i><color=yellow>Оружия и блоки</a></i></b> \n 1 - основа</i></b> \n 1*`);
 });
