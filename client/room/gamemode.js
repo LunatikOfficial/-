@@ -52,8 +52,8 @@ ServerTimer.OnTimer.Add(function(t) {
 });
 ServerTimer.RestartLoop(1);
 
-Teams.Add('Players', '<b><i>Игроки</i></b>', new Color(0, 0, 0, 0));
-Teams.Add('Admins', '<b><i>Админы</i></b>', new Color(0, 0, 0, 0));
+Teams.Add('Players', '<b><i>Игроки</i></b>', new Color(0, 0, 9, 0));
+Teams.Add('Admins', '<b><i>Админы</i></b>', new Color(0, 9, 0, 0));
 let AdminsTeam = Teams.Get('Admins'), PlayersTeam = Teams.Get('Players');
 PlayersTeam.Spawns.SpawnPointsGroups.Add(1);
 AdminsTeam.Spawns.SpawnPointsGroups.Add(2);
