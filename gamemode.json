@@ -1,0 +1,34 @@
+{
+  "Name": "<b><i><color=red>%R</color>tik</i></b>",
+  "Description": "<b><i>Покупки</i></b>",
+  "StartClientVersion": 510,
+  "MapFilter": {
+    "IsBlank": false,
+    "HasParcourEnd": false
+  },
+  "MapLists": [
+    {
+      "MapListId": 17180, 
+      "Name": "Создал Lunatik!!!: Карты для режима ПОКУПКИ"
+    }
+  ],
+  "Parameters": {
+    "Bool": [
+      {
+        "Name": "hello",
+        "DisplayName": "Приветствовать игроков при входе",
+        "Default": true
+      },
+      {
+        "Name": "AutoSpawn",
+        "DisplayName": "АвтоСпавн игрока",
+        "Default": true
+      },
+      {
+        "Name": "scoresOnDamage",
+        "DisplayName": "Очки за урон",
+        "Default": true
+      }
+    ]
+  }
+}
