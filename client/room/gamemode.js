@@ -1,5 +1,5 @@
-import { DisplayValueHeader, Color, Vector3 } from 'pixel_combats/basic';
-import { Game, Map, MapEditor, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, BreackGraph, Ui, Properties, GameMode, Spawns, Timers, TeamsBalancer, Build, AreaService, AreaPlayerTriggerService, AreaViewService, Chat } from 'pixel_combats/room';
+import { DisplayValueHeader, Color } from 'pixel_combats/basic';
+import { Game, Players, Inventory, LeaderBoard, BuildBlocksSet, Teams, Damage, BreackGraph, Ui, Properties, GameMode, Spawns, Timers, TeamsBalancer, Build, AreaService, AreaPlayerTriggerService, AreaViewService } from 'pixel_combats/room';
 
 const weaponcolor = new Color(0, 1, 1, 0);
 const skincolor = new Color(0, 5, 0, 0);
@@ -7,40 +7,37 @@ const block = new Color(128, 128, 0, 0);
 const fly = new Color(0, 0, 2, 0);
 const hpcolor = new Color(9, 0, 0, 0);
 const statcolor = new Color(1, 1, 1, 1);
-const spawncolor = new Color(1, 1, 1, 1);
-const bancolor = new Color(0, 0, 0, 0);
 
-let Inv = Inventory.GetContext(), Sp = Spawns.GetContext(), Dmg = Damage.GetContext();
-let ImportantPlayersIDs = {
-        Admins: ['E730023519401808','16355958893E0F11'],
-        VIPs: {
-		LVL3: ['E730023519401808'],
-		LVL2: ['40265AFE3B5A0AC2'],
-		LVL1: ['12EC16F532498F3F']
-	},
-        Bans: ['']
-};
-
-Dmg.DamageOut.Value = true;
-Dmg.FriendlyFire.Value = true;
+Damage.GetContext().DamageOut.Value = true;
+Damage.GetContext().FriendlyFire.Value = true;
 BreackGraph.OnlyPlayerBlocksDmg = true;
 
-Teams.Add('Players', '<b><i>Игроки</i></b>', new Color(0, 0, 0, 0));
-Teams.Add('Admins', '<b><i>Админы</i></b>', new Color(0, 0, 0, 0));
-let AdminsTeam = Teams.Get('Admins'), PlayersTeam = Teams.Get('Players');
-PlayersTeam.Spawns.SpawnPointsGroups.Add(1);
-AdminsTeam.Spawns.SpawnPointsGroups.Add(2);
-PlayersTeam.Build.BlocksSet.Value = BuildBlocksSet.Blue;
-AdminsTeam.Build.BlocksSet.Value = BuildBlocksSet.AllClear;
+Teams.Add("Blue", "<b>Игроки</b>", new Color(1, 1, 1, 1));
+Teams.Add("Red", "<b>Админы</b>", new Color(0, 0, 0, 0));
+var admsTeam = Teams.Get("Red");
+var playersTeam = Teams.Get("Blue");
+Teams.Get("Blue").Spawns.SpawnPointsGroups.Add(1);
+Teams.Get("Red").Spawns.SpawnPointsGroups.Add(2);
+playersTeam.Build.BlocksSet.Value = BuildBlocksSet.Blue;
+admsTeam.Build.BlocksSet.Value = BuildBlocksSet.AllClear;
 
-Teams.Get('Admins').Properties.Get('Deaths').Value = `Игроки:`;
-Teams.Get('Players').Properties.Get('Deaths').Value = `Время`;
+let currentTime = new Date().toLocaleString("en-US", {timeZone: "Europe/Moscow"});
+
+Teams.Get("Blue").Properties.Get("Deaths").Value = "<b><i><color=red>Покупки</color> от Lunatik(a)!!!</i></b>";
+Teams.Get("Red").Properties.Get("Deaths").Value = "<i><b><color=cyan>Сервер создан : </a></b></i>" + currentTime;
 LeaderBoard.PlayerLeaderBoardValues = [
-        new DisplayValueHeader('Kills', '<b><i>Киллы</i></b>', '<b><i>Киллы</i></b>'),
-        new DisplayValueHeader('Deaths', '<b><i>Смерти</i></b>', '<b><i>Смерти</i></b>'),
-        new DisplayValueHeader('Scores', '<b><i>Очки</i></b>', '<b><i>Очки</i></b>'),
-        new DisplayValueHeader('Status', '<b><i>Статус</i></b>', '<b><i>Статус</i></b>'),
-        new DisplayValueHeader('RoomID', '<b><i>Room ID</i></b>', '<b><i>Room ID</i></b>')
+  new DisplayValueHeader("Kills", "<b>Киллы</b>", "<b>Киллы</b>"),
+  new DisplayValueHeader("Deaths", "<b>Смерти</b>", "<b>Смерти</b>"),
+  new DisplayValueHeader("Scores", "<b>Очки</b>", "<b>Очки</b>"),
+  new DisplayValueHeader("Status", "<b>Статус</b>", "<b>Статус</b>")
+];
+
+LeaderBoard.PlayersWeightGetter.Set(function(player) {
+  return player.Properties.Get("Scores").Value;
+});
+
+Ui.GetContext().TeamProp1.Value = { Team: "Blue", Prop: "Deaths" };
+Ui.GetContext().TeamProp2.Value = { Team: "Red", Prop: "Deaths" };
 ];
 LeaderBoard.PlayersWeightGetter.Set(function(p) {
         return p.Properties.Get('Scores').Value;
