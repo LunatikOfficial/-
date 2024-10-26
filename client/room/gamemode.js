@@ -26,8 +26,6 @@ Dmg.DamageOut.Value = true;
 Dmg.FriendlyFire.Value = true;
 BreackGraph.OnlyPlayerBlocksDmg = true;
 
-
-
 Teams.Add('Players', '<b><i>Игроки</i></b>', new Color(0, 0, 0, 0));
 Teams.Add('Admins', '<b><i>Админы</i></b>', new Color(0, 0, 0, 0));
 let AdminsTeam = Teams.Get('Admins'), PlayersTeam = Teams.Get('Players');
@@ -37,7 +35,7 @@ PlayersTeam.Build.BlocksSet.Value = BuildBlocksSet.Blue;
 AdminsTeam.Build.BlocksSet.Value = BuildBlocksSet.AllClear;
 
 Teams.Get('Admins').Properties.Get('Deaths').Value = `<b><i>Покупки от<color=red>Ruslan</a><i><b>`;
-Teams.Get('Players').Properties.Get('Deaths').Value = `Время: ${Props.Get('Time_FixedString').Value}`;
+Teams.Get('Players').Properties.Get('Deaths').Value = `Время`;
 LeaderBoard.PlayerLeaderBoardValues = [
         new DisplayValueHeader('Kills', '<b><i>Киллы</i></b>', '<b><i>Киллы</i></b>'),
         new DisplayValueHeader('Deaths', '<b><i>Смерти</i></b>', '<b><i>Смерти</i></b>'),
