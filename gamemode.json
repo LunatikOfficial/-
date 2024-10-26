@@ -1,16 +1,12 @@
 {
-  "Name": "<b><i><color=red>%R</color>tik</i></b>",
-  "Description": "<b><i>Покупки</i></b>",
+  "Name": "<b><i>Покупки от <color=yellow>Ruslan's</color></i></b>",
+  "Description": "<b><i>Режим создал Luntik</i></b>",
   "StartClientVersion": 510,
   "MapFilter": {
     "IsBlank": false,
     "HasParcourEnd": false
   },
   "MapLists": [
-    {
-      "MapListId": 17180, 
-      "Name": "Создал Lunatik!!!: Карты для режима ПОКУПКИ"
-    }
   ],
   "Parameters": {
     "Bool": [
