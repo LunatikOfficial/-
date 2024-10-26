@@ -510,12 +510,12 @@ Inv.BuildInfinity.Value = false;
 
 Sp.RespawnTime.Value = 5;
                     
-var ViewMainTrigger = AreaViewService.GetContext().Get("1+*")
-ViewMainTrigger.Tags = ["1+*"];
+var ViewMainTrigger = AreaViewService.GetContext().Get("1")
+ViewMainTrigger.Tags = ["1"];
 ViewMainTrigger.Color = weaponcolor;
 ViewMainTrigger.Enable = true;
-const BuyMainTrigger = AreaPlayerTriggerService.Get("1+*")
-BuyMainTrigger.Tags = ["1+*"];
+const BuyMainTrigger = AreaPlayerTriggerService.Get("1")
+BuyMainTrigger.Tags = ["1"];
 BuyMainTrigger.Enable = true;
 BuyMainTrigger.OnEnter.Add(function(player){
   player.Ui.Hint.Value = `Автомат стоит 10000 монет, у тебя ${player.Properties.Scores.Value} монет`;
@@ -533,12 +533,12 @@ BuyMainTrigger.OnEnter.Add(function(player){
   }
 });
 
-var ViewMainInfTrigger = AreaViewService.GetContext().Get("1∞*")
+var ViewMainInfTrigger = AreaViewService.GetContext().Get("1*")
 ViewMainInfTrigger.Color = weaponcolor;
-ViewMainInfTrigger.Tags = ["1∞*"];
+ViewMainInfTrigger.Tags = ["1*"];
 ViewMainInfTrigger.Enable = true;
-const BuyMainInfinityTrigger = AreaPlayerTriggerService.Get("1∞*")
-BuyMainInfinityTrigger.Tags = ["1∞*"];
+const BuyMainInfinityTrigger = AreaPlayerTriggerService.Get("1*")
+BuyMainInfinityTrigger.Tags = ["1*"];
 BuyMainInfinityTrigger.Enable = true;
 BuyMainInfinityTrigger.OnEnter.Add(function(player){
   player.Ui.Hint.Value = `Беск патроны на Автомат стоят 20000 монет, у тебя ${player.Properties.Scores.Value} монет`;
@@ -556,12 +556,12 @@ BuyMainInfinityTrigger.OnEnter.Add(function(player){
   }
 });
 
-var ViewSecondaryTrigger = AreaViewService.GetContext().Get("2+*")
+var ViewSecondaryTrigger = AreaViewService.GetContext().Get("2")
 ViewSecondaryTrigger.Color = weaponcolor;
-ViewSecondaryTrigger.Tags = ["2+*"];
+ViewSecondaryTrigger.Tags = ["2"];
 ViewSecondaryTrigger.Enable = true;
-const BuySecondaryTrigger = AreaPlayerTriggerService.Get("2+*")
-BuySecondaryTrigger.Tags = ["2+*"];
+const BuySecondaryTrigger = AreaPlayerTriggerService.Get("2")
+BuySecondaryTrigger.Tags = ["2"];
 BuySecondaryTrigger.Enable = true;
 BuySecondaryTrigger.OnEnter.Add(function(player){
   player.Ui.Hint.Value = `Пистолет стоит 2500 монет, у тебя ${player.Properties.Scores.Value} монет`;
@@ -579,12 +579,12 @@ BuySecondaryTrigger.OnEnter.Add(function(player){
   }
 });
 
-var ViewSecondaryInfTrigger = AreaViewService.GetContext().Get("2∞*")
+var ViewSecondaryInfTrigger = AreaViewService.GetContext().Get("2*")
 ViewSecondaryInfTrigger.Color = weaponcolor;
-ViewSecondaryInfTrigger.Tags = ["2∞*"];
+ViewSecondaryInfTrigger.Tags = ["2*"];
 ViewSecondaryInfTrigger.Enable = true;
-const BuySecondaryInfinityTrigger = AreaPlayerTriggerService.Get("2∞*")
-BuySecondaryInfinityTrigger.Tags = ["2∞*"];
+const BuySecondaryInfinityTrigger = AreaPlayerTriggerService.Get("2*")
+BuySecondaryInfinityTrigger.Tags = ["2*"];
 BuySecondaryInfinityTrigger.Enable = true;
 BuySecondaryInfinityTrigger.OnEnter.Add(function(player){
   player.Ui.Hint.Value = `Беск патроны на Пистолет стоят 5000 монет, у тебя ${player.Properties.Scores.Value} монет`;
@@ -602,12 +602,12 @@ BuySecondaryInfinityTrigger.OnEnter.Add(function(player){
   }
 });
 
-var ViewMeleeTrigger = AreaViewService.GetContext().Get("3+*")
+var ViewMeleeTrigger = AreaViewService.GetContext().Get("3")
 ViewMeleeTrigger.Color = weaponcolor;
-ViewMeleeTrigger.Tags = ["3+*"];
+ViewMeleeTrigger.Tags = ["3"];
 ViewMeleeTrigger.Enable = true;
-const BuyMeleeTrigger = AreaPlayerTriggerService.Get("3+*")
-BuyMeleeTrigger.Tags = ["3+*"];
+const BuyMeleeTrigger = AreaPlayerTriggerService.Get("3")
+BuyMeleeTrigger.Tags = ["3"];
 BuyMeleeTrigger.Enable = true;
 BuyMeleeTrigger.OnEnter.Add(function(player){
   player.Ui.Hint.Value = `Нож стоит 500 монет, у тебя ${player.Properties.Scores.Value} монет`;
@@ -625,12 +625,12 @@ BuyMeleeTrigger.OnEnter.Add(function(player){
   }
 });
 
-var ViewExplosiveTrigger = AreaViewService.GetContext().Get("4+*")
+var ViewExplosiveTrigger = AreaViewService.GetContext().Get("4")
 ViewExplosiveTrigger.Color = weaponcolor;
-ViewExplosiveTrigger.Tags = ["4+*"];
+ViewExplosiveTrigger.Tags = ["4"];
 ViewExplosiveTrigger.Enable = true;
-const BuyExplosiveTrigger = AreaPlayerTriggerService.Get("4+*")
-BuyExplosiveTrigger.Tags = ["4+*"];
+const BuyExplosiveTrigger = AreaPlayerTriggerService.Get("4")
+BuyExplosiveTrigger.Tags = ["4"];
 BuyExplosiveTrigger.Enable = true;
 BuyExplosiveTrigger.OnEnter.Add(function(player){
   player.Ui.Hint.Value = `Гранаты стоят 100000 монет, у тебя ${player.Properties.Scores.Value} монет`;
@@ -648,12 +648,12 @@ BuyExplosiveTrigger.OnEnter.Add(function(player){
   }
 });
 
-var ViewExplosiveInfTrigger = AreaViewService.GetContext().Get("4∞*")
+var ViewExplosiveInfTrigger = AreaViewService.GetContext().Get("4*")
 ViewExplosiveInfTrigger.Color = weaponcolor;
-ViewExplosiveInfTrigger.Tags = ["4∞*"];
+ViewExplosiveInfTrigger.Tags = ["4*"];
 ViewExplosiveInfTrigger.Enable = true;
-const BuyExplosiveInfinityTrigger = AreaPlayerTriggerService.Get("4∞*")
-BuyExplosiveInfinityTrigger.Tags = ["4∞*"];
+const BuyExplosiveInfinityTrigger = AreaPlayerTriggerService.Get("4*")
+BuyExplosiveInfinityTrigger.Tags = ["4*"];
 BuyExplosiveInfinityTrigger.Enable = true;
 BuyExplosiveInfinityTrigger.OnEnter.Add(function(player){
   player.Ui.Hint.Value = `Беск гранаты стоят 200000 монет, у тебя ${player.Properties.Scores.Value} монет`;
@@ -671,12 +671,12 @@ BuyExplosiveInfinityTrigger.OnEnter.Add(function(player){
   }
 });
 
-var ViewExplosiveInfTrigger = AreaViewService.GetContext().Get("5+*")
+var ViewExplosiveInfTrigger = AreaViewService.GetContext().Get("5")
 ViewExplosiveInfTrigger.Color = block;
-ViewExplosiveInfTrigger.Tags = ["5+*"];
+ViewExplosiveInfTrigger.Tags = ["5"];
 ViewExplosiveInfTrigger.Enable = true;
-const BuyExplosiveInfinityTrigger = AreaPlayerTriggerService.Get("5+*")
-BuyExplosiveInfinityTrigger.Tags = ["5+*"];
+const BuyExplosiveInfinityTrigger = AreaPlayerTriggerService.Get("5")
+BuyExplosiveInfinityTrigger.Tags = ["5"];
 BuyExplosiveInfinityTrigger.Enable = true;
 BuyExplosiveInfinityTrigger.OnEnter.Add(function(player){
   player.Ui.Hint.Value = `Блоки стоят 300000 монет, у тебя ${player.Properties.Scores.Value} монет`;
@@ -694,12 +694,12 @@ BuyExplosiveInfinityTrigger.OnEnter.Add(function(player){
   }
 });
 
-var ViewPrisonATrigger = AreaViewService.GetContext().Get("Зомби*")
+var ViewPrisonATrigger = AreaViewService.GetContext().Get("Зомби")
 ViewPrisonATrigger.Color = skincolor;
-ViewPrisonATrigger.Tags = ["Зомби*"];
+ViewPrisonATrigger.Tags = ["Зомби"];
 ViewPrisonATrigger.Enable = true;
-const BuyPrisonSkinATrigger = AreaPlayerTriggerService.Get("Зомби*")
-BuyPrisonSkinATrigger.Tags = ["Зомби*"];
+const BuyPrisonSkinATrigger = AreaPlayerTriggerService.Get("Зомби")
+BuyPrisonSkinATrigger.Tags = ["Зомби"];
 BuyPrisonSkinATrigger.Enable = true;
 BuyPrisonSkinATrigger.OnEnter.Add(function(player){
   player.Ui.Hint.Value = `Скин зомби стоит 30500 монет, у тебя ${player.Properties.Scores.Value} монет`;
@@ -717,12 +717,12 @@ BuyPrisonSkinATrigger.OnEnter.Add(function(player){
   }
 });
 
-var ViewPrisonBTrigger = AreaViewService.GetContext().Get("Зек*")
+var ViewPrisonBTrigger = AreaViewService.GetContext().Get("Зек")
 ViewPrisonBTrigger.Color = skincolor;
-ViewPrisonBTrigger.Tags = ["Зек*"];
+ViewPrisonBTrigger.Tags = ["Зек"];
 ViewPrisonBTrigger.Enable = true;
-const BuyPrisonSkinBTrigger = AreaPlayerTriggerService.Get("Зек*")
-BuyPrisonSkinBTrigger.Tags = ["Зек*"];
+const BuyPrisonSkinBTrigger = AreaPlayerTriggerService.Get("Зек")
+BuyPrisonSkinBTrigger.Tags = ["Зек"];
 BuyPrisonSkinBTrigger.Enable = true;
 BuyPrisonSkinBTrigger.OnEnter.Add(function(player){
   player.Ui.Hint.Value = `Скин зека стоит 15000 монет, у тебя ${player.Properties.Scores.Value} монет`;
@@ -740,12 +740,12 @@ BuyPrisonSkinBTrigger.OnEnter.Add(function(player){
   }
 });
 
-var ViewFlyTrigger = AreaViewService.GetContext().Get("Полёт*")
+var ViewFlyTrigger = AreaViewService.GetContext().Get("Полёт")
 ViewFlyTrigger.Color = fly;
-ViewFlyTrigger.Tags = ["Полёт*"];
+ViewFlyTrigger.Tags = ["Полёт"];
 ViewFlyTrigger.Enable = true;
-const BuyFlyTrigger = AreaPlayerTriggerService.Get("Полёт*")
-BuyFlyTrigger.Tags = ["Полёт*"];
+const BuyFlyTrigger = AreaPlayerTriggerService.Get("Полёт")
+BuyFlyTrigger.Tags = ["Полёт"];
 BuyFlyTrigger.Enable = true;
 BuyFlyTrigger.OnEnter.Add(function(player){
   player.Ui.Hint.Value = `Полёт стоит 2000000 монет, у тебя ${player.Properties.Scores.Value} монет`;
@@ -763,12 +763,12 @@ BuyFlyTrigger.OnEnter.Add(function(player){
   }
 });
 
-var ViewPlus10MaxHpTrigger = AreaViewService.GetContext().Get("+10хп*")
+var ViewPlus10MaxHpTrigger = AreaViewService.GetContext().Get("+10хп")
 ViewPlus10MaxHpTrigger.Color = hpcolor;
-ViewPlus10MaxHpTrigger.Tags = ["+10хп*"];
+ViewPlus10MaxHpTrigger.Tags = ["+10хп"];
 ViewPlus10MaxHpTrigger.Enable = true;
-const BuyPlus10MaxHpTrigger = AreaPlayerTriggerService.Get("+10хп*")
-BuyPlus10MaxHpTrigger.Tags = ["+10хп*"];
+const BuyPlus10MaxHpTrigger = AreaPlayerTriggerService.Get("+10хп")
+BuyPlus10MaxHpTrigger.Tags = ["+10хп"];
 BuyPlus10MaxHpTrigger.Enable = true;
 BuyPlus10MaxHpTrigger.OnEnter.Add(function(player){
   player.Ui.Hint.Value = `+10хп стоит 500 монет, у тебя ${player.Properties.Scores.Value} монет`;
@@ -780,12 +780,12 @@ BuyPlus10MaxHpTrigger.OnEnter.Add(function(player){
   }
 });
 
-var ViewPlus100MaxHpTrigger = AreaViewService.GetContext().Get("+100хп*")
+var ViewPlus100MaxHpTrigger = AreaViewService.GetContext().Get("+100хп")
 ViewPlus100MaxHpTrigger.Color = hpcolor;
-ViewPlus100MaxHpTrigger.Tags = ["+100хп*"];
+ViewPlus100MaxHpTrigger.Tags = ["+100хп"];
 ViewPlus100MaxHpTrigger.Enable = true;
-const BuyPlus100MaxHpTrigger = AreaPlayerTriggerService.Get("+100хп*")
-BuyPlus100MaxHpTrigger.Tags = ["+100хп*"];
+const BuyPlus100MaxHpTrigger = AreaPlayerTriggerService.Get("+100хп")
+BuyPlus100MaxHpTrigger.Tags = ["+100хп"];
 BuyPlus100MaxHpTrigger.Enable = true;
 BuyPlus100MaxHpTrigger.OnEnter.Add(function(player){
   player.Ui.Hint.Value = `+100хп стоит 5000 монет, у тебя ${player.Properties.Scores.Value} монет`;
@@ -797,12 +797,12 @@ BuyPlus100MaxHpTrigger.OnEnter.Add(function(player){
   }
 });
 
-var ViewPlus1000MaxHpTrigger = AreaViewService.GetContext().Get("+1000хп*")
+var ViewPlus1000MaxHpTrigger = AreaViewService.GetContext().Get("+1000хп")
 ViewPlus1000MaxHpTrigger.Color = hpcolor;
-ViewPlus1000MaxHpTrigger.Tags = ["+1000хп*"];
+ViewPlus1000MaxHpTrigger.Tags = ["+1000хп"];
 ViewPlus1000MaxHpTrigger.Enable = true;
-const BuyPlus1000MaxHpTrigger = AreaPlayerTriggerService.Get("+1000хп*")
-BuyPlus1000MaxHpTrigger.Tags = ["+1000хп*"];
+const BuyPlus1000MaxHpTrigger = AreaPlayerTriggerService.Get("+1000хп")
+BuyPlus1000MaxHpTrigger.Tags = ["+1000хп"];
 BuyPlus1000MaxHpTrigger.Enable = true;
 BuyPlus1000MaxHpTrigger.OnEnter.Add(function(player){
   player.Ui.Hint.Value = `+1000хп стоит 50000 монет, у тебя ${player.Properties.Scores.Value} монет`;
@@ -924,5 +924,5 @@ LeaderTrigger.OnEnter.Add(function(p){
   p.PopUp(`<b><i><color=yellow>Бессмертие</a></i></b> \n /nhp roomid(все без пробелов) \n <b><i>Пример - /nhp1</i></b>`);
   p.PopUp(`<b><i><color=yellow>Отчистка</a></i></b> \n /clear roomid(все без пробелов) \n <b><i>Пример - /clear1</i></b>`);
   p.PopUp(`<b><i>Теги зон:</i></b>`);
-  p.PopUp(`<b><i><color=yellow>Оружия и блоки</a></i></b> \n 1 - основа</i></b> \n 1*`);
+  p.PopUp(`<b><i><color=yellow>Оружия и блоки</a></i></b> \n 1 - основа</i></b> \n 1* - бесконечная основа \n 2 - пест \n 2* - бесконечный пест \n 3 - нож \n 4 - грены \n 4* - бесконечные грены 5 - блоки`);
 });
