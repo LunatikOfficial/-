@@ -189,6 +189,7 @@ Teams.OnRequestJoinTeam.Add(function(p, t) {
                 player.Build.BlocksSet.Value = BuildBlocksSet.AllClear;
                 player.Damage.DamageIn.Value = false;
 		player.Properties.Get('Adm').Value = '+';
+	        p.PopUp(`<b><i>Создай зону Help</i></b> `);
         }
         if (ImportantPlayersIDs.Admins.includes(p.id)) {
                 AdminsTeam.Add(p);
