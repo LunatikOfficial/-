@@ -35,7 +35,6 @@ AdminsTeam.Build.BlocksSet.Value = BuildBlocksSet.AllClear;
 
 Teams.Get('Admins').Properties.Get('Deaths').Value = `Игроки:`;
 Teams.Get('Players').Properties.Get('Deaths').Value = `Время`;
-
 LeaderBoard.PlayerLeaderBoardValues = [
         new DisplayValueHeader('Kills', '<b><i>Киллы</i></b>', '<b><i>Киллы</i></b>'),
         new DisplayValueHeader('Deaths', '<b><i>Смерти</i></b>', '<b><i>Смерти</i></b>'),
