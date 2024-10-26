@@ -925,4 +925,13 @@ LeaderTrigger.OnEnter.Add(function(p){
   p.PopUp(`<b><i><color=yellow>Отчистка</a></i></b> \n /clear roomid(все без пробелов) \n <b><i>Пример - /clear1</i></b>`);
   p.PopUp(`<b><i>Теги зон:</i></b>`);
   p.PopUp(`<b><i><color=yellow>Оружия и блоки</a></i></b> \n 1 - основа \n 1* - бесконечная основа \n 2 - пест \n 2* - бесконечный пест \n 3 - нож \n 4 - грены \n 4* - бесконечные грены \n 5 - блоки`);
+  p.PopUp(`<b><i><color=yellow>Скины</a></i></b> \n Зек \n Зомби`);
+  p.PopUp(`<b><i><color=yellow>Жизьни</a></i></b> \n +10хп \n +100хп \n +1000хп`); 
+  p.PopUp(`<b><i><color=yellow>Монеты</a></i></b> \n В название вписать - кол.во монет, а в тег - очки`);
+  p.PopUp(`<b><i><color=yellow>Подсказка сверху</a></i></b> \n В название вписать - подсказку, а в тег - Hint`);
+  p.PopUp(`<b><i><color=yellow>Подсказка по центру</a></i></b> \n В название вписать - подсказку, а в тег - PopUp`);
+  p.PopUp(`<b><i><color=yellow>Админка</a></i></b> \n Adm`);
+  p.PopUp(`<b><i><color=yellow>Рестарт сервера</a></i></b> \n Рестарт`);
+  p.PopUp(`<b><i><color=yellow>Телепорт по координатам</a></i></b> \n В название вписать - x, y, z (пример - 1, 1, 1), а в тег - Теп`);
+
 });
