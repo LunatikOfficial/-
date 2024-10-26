@@ -9,7 +9,6 @@ const hpcolor = new Color(9, 0, 0, 0);
 const statcolor = new Color(1, 1, 1, 1);
 const spawncolor = new Color(1, 1, 1, 1);
 const bancolor = new Color(0, 0, 0, 0);
-const micolor = new Color(0.5, 0.5, 0.5, 0);
 
 let Inv = Inventory.GetContext(), Sp = Spawns.GetContext(), Dmg = Damage.GetContext();
 let ImportantPlayersIDs = {
@@ -26,27 +25,7 @@ Dmg.DamageOut.Value = true;
 Dmg.FriendlyFire.Value = true;
 BreackGraph.OnlyPlayerBlocksDmg = true;
 
-let Props = Properties.GetContext();
-Props.Get('Time_Hours').Value = 0;
-Props.Get('Time_Minutes').Value = 0;
-Props.Get('Time_Seconds').Value = 0;
-Props.Get('Players_Now').Value = 0;
-Props.Get('Players_WereMax').Value = 0;
-Props.Get('Time_FixedString').Value = '00:00:00';
-let ServerTimer = Timers.GetContext().Get('Server');
-ServerTimer.OnTimer.Add(function(t) {
-	Props.Get('Time_Seconds').Value++;
-	if (Props.Get('Time_Seconds').Value >= 60) {
-		Props.Get('Time_Seconds').Value = 0;
-		Props.Get('Time_Minutes').Value++;
-	}
-	if (Props.Get('Time_Minutes').Value >= 60) {
-		Props.Get('Time_Minutes').Value = 0;
-		Props.Get('Time_Hours').Value++;
-	}
-	Props.Get('Players_Now').Value = Players.All.length;
-	if (Props.Get('Players_Now').Value > Props.Get('Players_WereMax').Value) Props.Get('Players_WereMax').Value = Props.Get('Players_Now').Value;
-	Props.Get('Time_FixedString').Value = `${Props.Get('Time_Hours').Value < 10 ? '0' + Props.Get('Time_Hours').Value : Props.Get('Time_Hours').Value}:${Props.Get('Time_Minutes').Value < 10 ? '0' + Props.Get('Time_Minutes').Value : Props.Get('Time_Minutes').Value}:${Props.Get('Time_Seconds').Value < 10 ? '0' + Props.Get('Time_Seconds').Value : Props.Get('Time_Seconds').Value}`;
+
 	Teams.Get('Admins').Properties.Get('Deaths').Value = `Игроки: ${Props.Get('Players_Now').Value}/${Players.MaxCount}`;
 	Teams.Get('Players').Properties.Get('Deaths').Value = `Время: ${Props.Get('Time_FixedString').Value}`;
 });
@@ -59,6 +38,9 @@ PlayersTeam.Spawns.SpawnPointsGroups.Add(1);
 AdminsTeam.Spawns.SpawnPointsGroups.Add(2);
 PlayersTeam.Build.BlocksSet.Value = BuildBlocksSet.Blue;
 AdminsTeam.Build.BlocksSet.Value = BuildBlocksSet.AllClear;
+
+Teams.Get('Admins').Properties.Get('Deaths').Value = `Игроки:`;
+Teams.Get('Players').Properties.Get('Deaths').Value = `Время`;
 
 LeaderBoard.PlayerLeaderBoardValues = [
         new DisplayValueHeader('Kills', '<b><i>Киллы</i></b>', '<b><i>Киллы</i></b>'),
