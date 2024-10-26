@@ -13,7 +13,7 @@ const micolor = new Color(0.5, 0.5, 0.5, 0);
 
 let Inv = Inventory.GetContext(), Sp = Spawns.GetContext(), Dmg = Damage.GetContext();
 let ImportantPlayersIDs = {
-        Admins: ['E730023519401808'],
+        Admins: ['E730023519401808','16355958893E0F11'],
         VIPs: {
 		LVL3: ['E730023519401808'],
 		LVL2: ['40265AFE3B5A0AC2'],
@@ -134,39 +134,6 @@ function UnAdmPlayer(p) {
 	p.Properties.Get('Adm').Value = '-';
 	p.Properties.Get('Status').Value = '<b><i>Игрок</i></b>';
 }
-function VIP1(p) {
-	p.inventory.Main.Value = true;
-        p.inventory.MainInfinity.Value = true;
-        p.inventory.Secondary.Value = true;
-        p.inventory.SecondaryInfinity.Value = true;
-        p.inventory.Melee.Value = true;
-        p.contextedProperties.MaxHp.Value = 500;
-        p.Properties.Get('Status').Value = '<b><i><color=yellow>VIP 1</color> Игрок</i></b>';
-}
-function VIP2(p) {
-	p.inventory.Main.Value = true;
-        p.inventory.MainInfinity.Value = true;
-        p.inventory.Secondary.Value = true;
-        p.inventory.SecondaryInfinity.Value = true;
-        p.inventory.Melee.Value = true;
-        p.inventory.Explosive.Value = true;
-        p.inventory.ExplosiveInfinity.Value = true;
-        p.contextedProperties.MaxHp.Value = 1000;
-        p.Properties.Get('Status').Value = '<b><i><color=yellow>VIP 1</color> Игрок</i></b>';
-}
-function VIP3(p) {
-	p.inventory.Main.Value = true;
-        p.inventory.MainInfinity.Value = true;
-        p.inventory.Secondary.Value = true;
-        p.inventory.SecondaryInfinity.Value = true;
-        p.inventory.Melee.Value = true;
-        p.inventory.Explosive.Value = true;
-        p.inventory.ExplosiveInfinity.Value = true;
-	p.contextedProperties.SkinType.Value = 2;
-        p.Build.FlyEnable.Value = true;
-        p.contextedProperties.MaxHp.Value = 2000;
-        p.Properties.Get('Status').Value = '<b><i><color=yellow>VIP 3</color> Игрок</i></b>';
-}
 
 Ui.GetContext().TeamProp1.Value = { Team: "Admins", Prop: "Deaths" };
 Ui.GetContext().TeamProp2.Value = { Team: "Players", Prop: "Deaths" };
@@ -178,14 +145,6 @@ Teams.OnRequestJoinTeam.Add(function(p, t) {
         p.Properties.Get('RoomID').Value = p.IdInRoom;
 	p.Properties.Get('Ban').Value = '-';
 	p.Properties.Get('Adm').Value = '-';
-	p.Properties.Get('Je').Value = 0;
-	p.Properties.Get('Kluch1').Value = false;
-	p.Properties.Get('Missia1').Value = false;
-	p.Properties.Get('Missiaa2').Value = false;
-	p.Properties.Get('Missia2').Value = false;
-        p.Properties.Get('Missiaa3').Value = false;
-	p.Properties.Get('Missia3').Value = false;
-	p.Properties.Get('m3').Value = false;
 	if (Props.Get(`${p.id}_Main`).Value) p.inventory.Main.Value = true;
 	if (Props.Get(`${p.id}_MainInfinity`).Value) p.inventory.MainInfinity.Value = true;
 	if (Props.Get(`${p.id}_Secondary`).Value) p.inventory.Secondary.Value = true;
@@ -235,8 +194,7 @@ Teams.OnRequestJoinTeam.Add(function(p, t) {
         if (ImportantPlayersIDs.Admins.includes(p.id)) {
                 AdminsTeam.Add(p);
                 GiveAdmForPlayer(p);
-                if (p.id == '16355958893E0F11', '71A41676124AD78E') p.Properties.Get('Status').Value = '<color=yellow><b><i>Создатель</i></b></color>';
-		if (p.id == 'E539C5EEA90E8CC6') p.Properties.Get('Status').Value = '<i><b>Status</b></i>';
+                if (p.id == '16355958893E0F11', 'E730023519401808') p.Properties.Get('Status').Value = '<color=yellow><b><i>Создатель</i></b></color>';
         } else {
                 PlayersTeam.Add(p);
                 p.Properties.Get('Status').Value = '<b><i>Игрок</i></b>';
@@ -444,181 +402,6 @@ Chat.OnMessage.Add(function(m) {
                 } catch (e) {
                         s.PopUp(`<b><i>Команда: "${mt}" не была выполнена\n (<color=red>ОШИБКА!!!</color>: Причина: аргумент неправильный, игрок не был найден, или вы не админ).</i></b>`);
 		}
-	} else if (mt[0] == '/' && mt.slice(1, 3) == '1+') {
-		let arg = Number(mt.slice(3));
-                let argp = Players.GetByRoomId(arg);
-                try {
-			if (isNaN(arg)) throw '';
-			if (s.Team != AdminsTeam) throw '';
-                        argp.inventory.Main.Value = true;
-		        argp.inventory.MainInfinity.Value = true;
-			argp.Spawns.Spawn();
-			argp.PopUp(`Вы получили основное оружие админом: "${s.NickName}"!`);
-                        s.PopUp(`<b><i>Команда: "${mt}" была выполнена успешно.\n <color=lime>Игрок: "${argp.NickName}" получил соновное оружие.</color></i></b>`);
-		} catch (e) {
-                        s.PopUp(`<b><i>Команда: "${mt}" не была выполнена\n (<color=red>ОШИБКА!!!</color>: Причина: аргумент неправильный, игрок не был найден, или вы не админ).</i></b>`);
-		}
-	} else if (mt[0] == '/' && mt.slice(1, 3) == '1-') {
-		let arg = Number(mt.slice(3));
-                let argp = Players.GetByRoomId(arg);
-                try {
-			if (isNaN(arg)) throw '';
-			if (s.Team != AdminsTeam) throw '';
-                        argp.inventory.Main.Value = false;
-		        argp.inventory.MainInfinity.Value = false;
-			argp.Spawns.Spawn();
-			argp.PopUp(`Вы лишились основного оружия админом: "${s.NickName}"!`);
-                        s.PopUp(`<b><i>Команда: "${mt}" была выполнена успешно.\n <color=lime>Игрок: "${argp.NickName}" лишился основного оружия.</color></i></b>`);
-		} catch (e) {
-                        s.PopUp(`<b><i>Команда: "${mt}" не была выполнена\n (<color=red>ОШИБКА!!!</color>: Причина: аргумент неправильный, игрок не был найден, или вы не админ).</i></b>`);
-		}
-	} else if (mt[0] == '/' && mt.slice(1, 3) == '2+') {
-		let arg = Number(mt.slice(3));
-                let argp = Players.GetByRoomId(arg);
-                try {
-			if (isNaN(arg)) throw '';
-			if (s.Team != AdminsTeam) throw '';
-                        argp.inventory.Secondary.Value = true;
-		        argp.inventory.SecondaryInfinity.Value = true;
-			argp.Spawns.Spawn();
-			argp.PopUp(`Вы получили вторичное оружие админом: "${s.NickName}"!`);
-                        s.PopUp(`<b><i>Команда: "${mt}" была выполнена успешно.\n <color=lime>Игрок: "${argp.NickName}" получил вторичное оружие.</color></i></b>`);
-			argp
-		} catch (e) {
-                        s.PopUp(`<b><i>Команда: "${mt}" не была выполнена\n (<color=red>ОШИБКА!!!</color>: Причина: аргумент неправильный, игрок не был найден, или вы не админ).</i></b>`);
-		}
-	} else if (mt[0] == '/' && mt.slice(1, 3) == '2-') {
-		let arg = Number(mt.slice(3));
-                let argp = Players.GetByRoomId(arg);
-                try {
-			if (isNaN(arg)) throw '';
-			if (s.Team != AdminsTeam) throw '';
-                        argp.inventory.Secondary.Value = false;
-		        argp.inventory.SecondaryInfinity.Value = false;
-			argp.Spawns.Spawn();
-			argp.PopUp(`Вы лишились вторичного оружия админом: "${s.NickName}"!`);
-                        s.PopUp(`<b><i>Команда: "${mt}" была выполнена успешно.\n <color=lime>Игрок: "${argp.NickName}" лишился вторичного оружия.</color></i></b>`);
-		} catch (e) {
-                        s.PopUp(`<b><i>Команда: "${mt}" не была выполнена\n (<color=red>ОШИБКА!!!</color>: Причина: аргумент неправильный, игрок не был найден, или вы не админ).</i></b>`);
-		}
-		} else if (mt[0] == '/' && mt.slice(1, 3) == '4+') {
-		let arg = Number(mt.slice(3));
-                let argp = Players.GetByRoomId(arg);
-                try {
-			if (isNaN(arg)) throw '';
-			if (s.Team != AdminsTeam) throw '';
-                        argp.inventory.Explosive.Value = true;
-		        argp.inventory.ExplosiveInfinity.Value = true;
-			argp.Spawns.Spawn();
-			argp.PopUp(`Вы получили гранаты админом: "${s.NickName}"!`);
-                        s.PopUp(`<b><i>Команда: "${mt}" была выполнена успешно.\n <color=lime>Игрок: "${argp.NickName}" получил гранаты.</color></i></b>`);
-		} catch (e) {
-                        s.PopUp(`<b><i>Команда: "${mt}" не была выполнена\n (<color=red>ОШИБКА!!!</color>: Причина: аргумент неправильный, игрок не был найден, или вы не админ).</i></b>`);
-		}
-	} else if (mt[0] == '/' && mt.slice(1, 3) == '4-') {
-		let arg = Number(mt.slice(3));
-                let argp = Players.GetByRoomId(arg);
-                try {
-			if (isNaN(arg)) throw '';
-			if (s.Team != AdminsTeam) throw '';
-                        argp.inventory.Explosive.Value = false;
-		        argp.inventory.ExplosiveInfinity.Value = false;
-			argp.Spawns.Spawn();
-			argp.PopUp(`Вы лишились гранат админом: "${s.NickName}"!`);
-                        s.PopUp(`<b><i>Команда: "${mt}" была выполнена успешно.\n <color=lime>Игрок: "${argp.NickName}" лишился гранат.</color></i></b>`);
-		} catch (e) {
-                        s.PopUp(`<b><i>Команда: "${mt}" не была выполнена\n (<color=red>ОШИБКА!!!</color>: Причина: аргумент неправильный, игрок не был найден, или вы не админ).</i></b>`);
-		}
-	} else if (mt[0] == '/' && mt.slice(1, 3) == '3+') {
-		let arg = Number(mt.slice(3));
-                let argp = Players.GetByRoomId(arg);
-                try {
-			if (isNaN(arg)) throw '';
-			if (s.Team != AdminsTeam) throw '';
-                        argp.inventory.Melee.Value = true;
-			argp.Spawns.Spawn();
-			argp.PopUp(`Вы получили ближние оружие админом: "${s.NickName}"!`);
-                        s.PopUp(`<b><i>Команда: "${mt}" была выполнена успешно.\n <color=lime>Игрок: "${argp.NickName}" получил ближние оружие.</color></i></b>`);
-		} catch (e) {
-                        s.PopUp(`<b><i>Команда: "${mt}" не была выполнена\n (<color=red>ОШИБКА!!!</color>: Причина: аргумент неправильный, игрок не был найден, или вы не админ).</i></b>`);
-		}
-	} else if (mt[0] == '/' && mt.slice(1, 3) == '3-') {
-		let arg = Number(mt.slice(3));
-                let argp = Players.GetByRoomId(arg);
-                try {
-			if (isNaN(arg)) throw '';
-			if (s.Team != AdminsTeam) throw '';
-                        argp.inventory.Melee.Value = false;
-			argp.Spawns.Spawn();
-			argp.PopUp(`Вы лишились ближнего оружия админом: "${s.NickName}"!`);
-                        s.PopUp(`<b><i>Команда: "${mt}" была выполнена успешно.\n <color=lime>Игрок: "${argp.NickName}" лишился ближнего оружия.</color></i></b>`);
-		} catch (e) {
-                        s.PopUp(`<b><i>Команда: "${mt}" не была выполнена\n (<color=red>ОШИБКА!!!</color>: Причина: аргумент неправильный, игрок не был найден, или вы не админ).</i></b>`);
-		}
-	} else if (mt[0] == '/' && mt.slice(1, 3) == '5+') {
-		let arg = Number(mt.slice(3));
-                let argp = Players.GetByRoomId(arg);
-                try {
-			if (isNaN(arg)) throw '';
-			if (s.Team != AdminsTeam) throw '';
-                        argp.inventory.Build.Value = true;
-			argp.inventory.BuildInfinity.Value = true;
-			argp.Spawns.Spawn();
-			argp.PopUp(`Вы получили блоки админом: "${s.NickName}"!`);
-                        s.PopUp(`<b><i>Команда: "${mt}" была выполнена успешно.\n <color=lime>Игрок: "${argp.NickName}" получил блоки.</color></i></b>`);
-		} catch (e) {
-                        s.PopUp(`<b><i>Команда: "${mt}" не была выполнена\n (<color=red>ОШИБКА!!!</color>: Причина: аргумент неправильный, игрок не был найден, или вы не админ).</i></b>`);
-		}
-	} else if (mt[0] == '/' && mt.slice(1, 3) == '5-') {
-		let arg = Number(mt.slice(3));
-                let argp = Players.GetByRoomId(arg);
-                try {
-			if (isNaN(arg)) throw '';
-			if (s.Team != AdminsTeam) throw '';
-                        argp.inventory.Build.Value = false;
-			argp.inventory.BuildInfinity.Value = false;
-			argp.Spawns.Spawn();
-			argp.PopUp(`Вы лишились блоков админом: "${s.NickName}"!`);
-                        s.PopUp(`<b><i>Команда: "${mt}" была выполнена успешно.\n <color=lime>Игрок: "${argp.NickName}" лишился блоков.</color></i></b>`);
-		} catch (e) {
-                        s.PopUp(`<b><i>Команда: "${mt}" не была выполнена\n (<color=red>ОШИБКА!!!</color>: Причина: аргумент неправильный, игрок не был найден, или вы не админ).</i></b>`);
-		}
-	} else if (mt[0] == '/' && mt.slice(1, 6) == 'zombi') {
-		let arg = Number(mt.slice(6));
-                let argp = Players.GetByRoomId(arg);
-                try {
-			if (isNaN(arg)) throw '';
-			if (s.Team != AdminsTeam) throw '';
-                        argp.contextedProperties.SkinType.Value = 1;
-			argp.PopUp(`Вам был выдан скин зомби админом: "${s.NickName}"!`);
-                        s.PopUp(`<b><i>Команда: "${mt}" была выполнена успешно.\n <color=lime>Игрок: "${argp.NickName}" получил скин зомби.</color></i></b>`);
-		} catch (e) {
-                        s.PopUp(`<b><i>Команда: "${mt}" не была выполнена\n (<color=red>ОШИБКА!!!</color>: Причина: аргумент неправильный, игрок не был найден, или вы не админ).</i></b>`);
-		}
-	} else if (mt[0] == '/' && mt.slice(1, 4) == 'zek') {
-		let arg = Number(mt.slice(4));
-                let argp = Players.GetByRoomId(arg);
-                try {
-			if (isNaN(arg)) throw '';
-			if (s.Team != AdminsTeam) throw '';
-                        argp.contextedProperties.SkinType.Value = 2;
-			argp.PopUp(`Вам был выдан скин зека админом: "${s.NickName}"!`);
-                        s.PopUp(`<b><i>Команда: "${mt}" была выполнена успешно.\n <color=lime>Игрок: "${argp.NickName}" получил скин зека.</color></i></b>`);
-		} catch (e) {
-                        s.PopUp(`<b><i>Команда: "${mt}" не была выполнена\n (<color=red>ОШИБКА!!!</color>: Причина: аргумент неправильный, игрок не был найден, или вы не админ).</i></b>`);
-		}
-	} else if (mt[0] == '/' && mt.slice(1, 5) == 'skin') {
-		let arg = Number(mt.slice(5));
-                let argp = Players.GetByRoomId(arg);
-                try {
-			if (isNaN(arg)) throw '';
-			if (s.Team != AdminsTeam) throw '';
-                        argp.contextedProperties.SkinType.Value = 3;
-			argp.PopUp(`Вам был выдан начальный скин админом: "${s.NickName}"!`);
-                        s.PopUp(`<b><i>Команда: "${mt}" была выполнена успешно.\n <color=lime>Игрок: "${argp.NickName}" получил начальный скин.</color></i></b>`);
-		} catch (e) {
-                        s.PopUp(`<b><i>Команда: "${mt}" не была выполнена\n (<color=red>ОШИБКА!!!</color>: Причина: аргумент неправильный, игрок не был найден, или вы не админ).</i></b>`);
-		 }
 	} else if (mt[0] == '/' && mt.slice(1, 6) == 'clear') {
 		let arg = Number(mt.slice(6));
                 let argp = Players.GetByRoomId(arg);
@@ -685,45 +468,6 @@ Chat.OnMessage.Add(function(m) {
 		} catch (e) {
                         s.PopUp(`<b><i>Команда: "${mt.replaceAll('<', '').replaceAll('>', '')}" не была выполнена (<color=red>ОШИБКА!!!</color>).</i></b>`);
                 }
-	} else if (mt[0] == '/' && mt.includes('|') && mt.slice(1, 3) == 'hp') {
-		let farg = Number(mt.slice(3, mt.indexOf('|')));
-		let sarg = Number(mt.slice(mt.indexOf('|') + 1));
-                let argp = Players.GetByRoomId(farg);
-                try {
-			if (s.Team != AdminsTeam) throw '';
-			if (isNaN(farg) || isNaN(sarg)) throw '';
-			if (mt.indexOf('|') == mt.length - 1) throw '';
-			argp.contextedProperties.MaxHp.Value += sarg;
-			argp.Spawns.Spawn();
-			s.PopUp(`<b><i>Админ: "${s.NickName}" начислил вам ${sarg} хп.</i></b>`);
-                        s.PopUp(`<b><i>Команда: "${mt}" была выполнена успешно.\n <color=lime>Игрок: "${argp.NickName}" получил ${sarg} хп.</color></i></b>`);
-		} catch (e) {
-                        s.PopUp(`<b><i>Команда: "${mt}" не была выполнена\n (<color=red>ОШИБКА!!!</color>: Причина: один из аргументов неправильный игрок не был найден, или вы не админ).</i></b>`);
-                }
-	} else if (mt[0] == '/' && mt.slice(1, 6) == 'spawn') {
-	        let arg = Number(mt.slice(6));
-                let argp = Players.GetByRoomId(arg);
-                try {
-			if (isNaN(arg)) throw '';
-			if (s.Team != AdminsTeam) throw '';
-			if (argp.Team == AdminsTeam) {
-				if (s.id != '41F16562BF7046EA') throw '';
-			}
-			if (argp.id == '41F16562BF7046EA') throw '';
-                        if (argp.Properties.Get('Ban').Value == '-') {
-				argp.Spawns.Spawn();
-				ImportantPlayersIDs.Bans.push(argp.id);
-				argp.PopUp(`Вы были возврашены на спавн, админом: "${s.NickName}"!`);
-                                s.PopUp(`<b><i>Команда: "${mt}" была выполнена успешно.\n <color=lime>Игрок: "${argp.NickName}" вернулся на спавн.</color></i></b>`);
-                        } else {
-				argp.Spawns.Spawn();
-				if (ImportantPlayersIDs.Bans.includes(argp.id)) ImportantPlayersIDs.Bans.splice(ImportantPlayersIDs.Bans.indexOf(argp.id), 1);
-				argp.PopUp(`Вы были возврашены на спавн, админом: "${s.NickName}"!`);
-                                s.PopUp(`<b><i>Команда: "${mt}" была выполнена успешно.\n <color=lime>Игрок: "${argp.NickName}" вернулся на спавн.</color></i></b>`);
-                        }
-                } catch (e) {
-                        s.PopUp(`<b><i>Команда: "${mt}" не была выполнена\n (<color=red>ОШИБКА!!!</color>: Причина: аргумент неправильный, игрок не был найден).</i></b>`);
-		}
 	} else if (mt[0] == '/' && mt.slice(1, 4) == 'adm') {
                 let arg = Number(mt.slice(4));
                 let argp = Players.GetByRoomId(arg);
@@ -752,46 +496,6 @@ Chat.OnMessage.Add(function(m) {
                 } catch (e) {
                         s.PopUp(`<b><i>Команда: "${mt.replaceAll('<', '').replaceAll('>', '')}" не была выполнена (<color=red>ОШИБКА!!!</color>).</i></b>`);
                 }
-	} else if (mt[0] == '/' && mt.includes('|') && mt.slice(1, 3) == 'tp') {
-		let farg = Number(mt.slice(3, mt.indexOf('|')));
-		let sarg = Number(mt.slice(mt.indexOf('|') + 1));
-                let fargp = Players.GetByRoomId(farg);
-                let sargp = Players.GetByRoomId(sarg);
-                try {
-			if (fargp.Team == null || sargp.Team == null) throw '';
-			if (!ImportantPlayersIDs.Admins.includes(s.id)) throw '';
-			if (s.id != fargp.id) {
-				if (ImportantPlayersIDs.Admins.includes(fargp.id)) {
-					if (s.id != '71A41676124AD78E' && s.id != '16355958893E0F11') throw '';
-				}
-			}
-			if (isNaN(farg) || isNaN(sarg)) throw '';
-			if (fargp.id == sargp.id) throw '';
-			if (mt.indexOf('|') == mt.length - 1) throw '';
-			fargp.Spawns.Spawn();
-			fargp.SetPositionAndRotation(sargp.Position, new Vector3(0, 0, 0));
-			if (s.id != fargp.id) fargp.PopUp(`<b><i>Админ: "${s.NickName.replaceAll('<', '').replaceAll('>', '')}" (в нике убраны символы: "<" и ">") телепортировал вас к игроку: "${sargp.NickName.replaceAll('<', '').replaceAll('>', '')}".</i></b>`);
-			else fargp.PopUp(`<b><i>Вы телепортировали себя к игроку: ${sargp.NickName.replaceAll('<', '').replaceAll('>', '')} (в нике убраны символы: "<" и ">").</i></b>`);
-                        s.PopUp(`<b><i>Команда: "${mt}" была выполнена успешно.\n <color=lime>Игрок: ${fargp.NickName.replaceAll('<', '').replaceAll('>', '')} (в нике убраны символы: "<" и ">") был телепортирован к игроку: ${sargp.NickName.replaceAll('<', '').replaceAll('>', '')} (в нике убраны символы: "<" и ">").</color></i></b>`);
-		} catch (e) {
-                        s.PopUp(`<b><i>Команда: "${mt.replaceAll('<', '').replaceAll('>', '')}" не была выполнена (<color=red>ОШИБКА!!!</color>).</i></b>`);
-		}
-	} else if (mt[0] == '/' && mt.includes('|') && mt.slice(1, 7) == 'status') {
-		let farg = Number(mt.slice(7, mt.indexOf('|')));
-		let sarg = mt.slice(mt.indexOf('|') + 1);
-                let argp = Players.GetByRoomId(farg);
-                try {
-			if (argp.Team == null) throw '';
-			if (!ImportantPlayersIDs.Admins.includes(s.id)) throw '';
-			if (isNaN(farg)) throw '';
-			if (mt.indexOf('|') == mt.length - 1) throw '';
-			argp.Properties.Get('Status').Value = sarg;
-			if (s.id != argp.id) argp.PopUp(`<b><i>Админ: "${s.NickName.replaceAll('<', '').replaceAll('>', '')}"  задал вам статус: "${sarg}".</i></b>`);
-			else argp.PopUp(`<b><i>Вы задали себе статус: "${sarg}".</i></b>`);
-                        s.PopUp(`<b><i>Команда: "${mt}" была выполнена успешно.\n <color=lime>Игрок: ${argp.NickName.replaceAll('<', '').replaceAll('>', '')} (в нике убраны символы: "<" и ">") получил статус: "${sarg}".</color></i></b>`);
-		} catch (e) {
-                        s.PopUp(`<b><i>Команда: "${mt.replaceAll('<', '').replaceAll('>', '')}" не была выполнена (<color=red>ОШИБКА!!!</color>).</i></b>`);
-		}
 	}
 });	
 
@@ -1127,57 +831,6 @@ GiveScoresAreaView.Color = new Color(0, 0, 0, 0);
 GiveScoresAreaView.Tags = ['Очки'];
 GiveScoresAreaView.Enable = true;
 
-var ViewPlus10MaxHpTrigger = AreaViewService.GetContext().Get("Про")
-ViewPlus10MaxHpTrigger.Color = statcolor;
-ViewPlus10MaxHpTrigger.Tags = ["Про"];
-ViewPlus10MaxHpTrigger.Enable = true;
-const BuyPlus10MaxHpTrigger = AreaPlayerTriggerService.Get("Про")
-BuyPlus10MaxHpTrigger.Tags = ["Про"];
-BuyPlus10MaxHpTrigger.Enable = true;
-BuyPlus10MaxHpTrigger.OnEnter.Add(function(player){
-  player.Ui.Hint.Value = `Статус Про стоит 10000 монет, у тебя ${player.Properties.Scores.Value} монет`;
-  if (player.Properties.Scores.Value > 9999) {
-    player.Ui.Hint.Value = `Ты купил статус Про`;
-    player.Properties.Scores.Value -= 10000;
-    player.Properties.Get("Status").Value = "<b><color=yellow>Про</color></b>";
-    player.Spawns.Spawn();
-  }
-});
-
-var ViewPlus10MaxHpTrigger = AreaViewService.GetContext().Get("Мастер")
-ViewPlus10MaxHpTrigger.Color = statcolor;
-ViewPlus10MaxHpTrigger.Tags = ["Мастер"];
-ViewPlus10MaxHpTrigger.Enable = true;
-const BuyPlus10MaxHpTrigger = AreaPlayerTriggerService.Get("Мастер")
-BuyPlus10MaxHpTrigger.Tags = ["Мастер"];
-BuyPlus10MaxHpTrigger.Enable = true;
-BuyPlus10MaxHpTrigger.OnEnter.Add(function(player){
-  player.Ui.Hint.Value = `Статус Мастер стоит 50000 монет, у тебя ${player.Properties.Scores.Value} монет`;
-  if (player.Properties.Scores.Value > 49999) {
-    player.Ui.Hint.Value = `Ты купил статус Мастер`;
-    player.Properties.Scores.Value -= 50000;
-    player.Properties.Get("Status").Value = "<b><color=lime>Мастер</color></b>";
-    player.Spawns.Spawn();
-  }
-});
-
-var ViewPlus10MaxHpTrigger = AreaViewService.GetContext().Get("Легенда")
-ViewPlus10MaxHpTrigger.Color = statcolor;
-ViewPlus10MaxHpTrigger.Tags = ["Легенда"];
-ViewPlus10MaxHpTrigger.Enable = true;
-const BuyPlus10MaxHpTrigger = AreaPlayerTriggerService.Get("Легенда")
-BuyPlus10MaxHpTrigger.Tags = ["Легенда"];
-BuyPlus10MaxHpTrigger.Enable = true;
-BuyPlus10MaxHpTrigger.OnEnter.Add(function(player){
-  player.Ui.Hint.Value = `Статус Легенда стоит 100000 монет, у тебя ${player.Properties.Scores.Value} монет`;
-  if (player.Properties.Scores.Value > 99999) {
-    player.Ui.Hint.Value = `Ты купил статус Легенда`;
-    player.Properties.Scores.Value -= 100000;
-    player.Properties.Get("Status").Value = "<b><color=red>Легенда</color></b>";
-    player.Spawns.Spawn();
-  }
-});
-
 let HintArea = AreaPlayerTriggerService.Get('HintArea');
 HintArea.Tags = ['Hint'];
 HintArea.Enable = true;
@@ -1275,178 +928,4 @@ LeaderTrigger.OnEnter.Add(function(p){
   p.PopUp(`<b><i><color=yellow>Возвращение на спавн</a></i></b> \n /spawn roomid(все без пробелов) \n <b><i>Пример - /spawn1</i></b>`);
   p.PopUp(`<b><i><color=yellow>Информация</a></i></b> \n /info roomid(все без пробелов) \n <b><i>Пример - /info1</i></b>`);
   p.PopUp(`<b><i><color=yellow>Бессмертие</a></i></b> \n /nhp roomid(все без пробелов) \n <b><i>Пример - /nhp1</i></b>`);
-});
-
-var ViewLeaderTrigger = AreaViewService.GetContext().Get("Leader")
-ViewLeaderTrigger.Color = spawncolor;
-ViewLeaderTrigger.Tags = ["Leader"];
-ViewLeaderTrigger.Enable = true;
-const LeaderTrigger = AreaPlayerTriggerService.Get("Leader")
-LeaderTrigger.Tags = ["Leader"];
-LeaderTrigger.Enable = true;
-LeaderTrigger.OnEnter.Add(function(p){
-  p.PopUp("Luna tiiiik");
-});
-
-var ViewDver3Trigger = AreaViewService.GetContext().Get("№1")
-ViewDver3Trigger.Color = bancolor;
-ViewDver3Trigger.Tags = ["№1"];
-ViewDver3Trigger.Enable = true;
-const Dver3Trigger = AreaPlayerTriggerService.Get("№1")
-Dver3Trigger.Tags = ["№1"];
-Dver3Trigger.Enable = true;
-Dver3Trigger.OnEnter.Add(function(p){
-  if (p.Properties.Get('Kluch1').Value) {
-    p.Ui.Hint.Value = `Доступ разрешен`;
-  } else {
-    p.Ui.Hint.Value = `У вас нет ключа в магазин №1`;
-    p.Spawns.Spawn();
-  }
-});
-
-var ViewTrigger = AreaViewService.GetContext().Get("Ключ1")
-ViewTrigger.Color = spawncolor;
-ViewTrigger.Tags = ["Ключ1"];
-ViewTrigger.Enable = true;
-const BuyTrigger = AreaPlayerTriggerService.Get("Ключ1")
-BuyTrigger.Tags = ["Ключ1"];
-BuyTrigger.Enable = true;
-BuyTrigger.OnEnter.Add(function(p){
-  p.Ui.Hint.Value = `Ключ в магазин №1 стоит 100000 монет, у тебя ${p.Properties.Scores.Value} монет`;
-  if (p.Properties.Get('Kluch1').Value) p.Ui.Hint.Value = `У вас уже есть ключ в магазин №1`;
-  else if (p.Properties.Scores.Value > 99999) {
-    p.Ui.Hint.Value = `Ты купил ключ в магазин №1`;
-    p.Properties.Scores.Value -= 100000;
-    p.Properties.Get('Kluch1').Value = true;
-    p.Spawns.Spawn();
-  }
-});
-
-let PopUpArea = AreaPlayerTriggerService.Get('MissiaArea');
-PopUpArea.Tags = ['Миссия1'];
-PopUpArea.Enable = true;
-PopUpArea.OnEnter.Add(function(p, a) {
-   p.Properties.Get('Missia1').Value = true;
-   p.PopUp(`<i><b><color=red>Ты взял миссию 1</color></b></i> \n Миссия заключается в том, чтоб ты накопил 100000 "Жетонов"`);
-});
-let PopUpAreaView = AreaViewService.GetContext().Get('MissiaAreaView');
-PopUpAreaView.Color = new Color(1 , 1, 1, 1);
-PopUpAreaView.Tags = ['Миссия1'];
-PopUpAreaView.Enable = true;
-
-var ViewDverTrigger = AreaViewService.GetContext().Get("Ми1")
-ViewDverTrigger.Tags = ["Ми1"];
-ViewDverTrigger.Enable = false;
-const DverTrigger = AreaPlayerTriggerService.Get("Ми1")
-DverTrigger.Tags = ["Ми1"];
-DverTrigger.Enable = true;
-DverTrigger.OnEnter.Add(function(p){
-  if (p.Properties.Get('Missia1').Value) {
-    p.Ui.Hint.Value = `Доступ разрешен`;
-  } else {
-    p.Ui.Hint.Value = `У вас нету миссии 1! Идите возмите её!`;
-    p.Spawns.Spawn();
-  }
-});
-
-let GiveAdmAllwaysArea = AreaPlayerTriggerService.Get('ЖетоныArea');
-GiveAdmAllwaysArea.Tags = ['Жетоны'];
-GiveAdmAllwaysArea.Enable = true;
-GiveAdmAllwaysArea.OnEnter.Add(function(p) {
-  p.Properties.Get('Je').Value += 750;
-  p.Ui.Hint.Value = `Ты получил 750 жетонов, теперь твой баланс ${p.Properties.Get('Je').Value} жетонов`;
-	if (p.Properties.Get('Je').Value >= 100000 && !p.Properties.Get('Missiaa2').Value) {
-          p.Properties.Scores.Value += 25000;
-	  p.Properties.Get('Missiaa2').Value = true;
-	  p.PopUp(`<b><size=15><color=lime>Выполнена миссия по добытию жетонов!</color> \n Вы вознаграждаетесь 25000 очками и доступом к 2ой миссии </size></b>`);
-	}
-});
-let GiveAdmAllwaysAreaView = AreaViewService.GetContext().Get('ЖетоныAreaView');
-GiveAdmAllwaysAreaView.Color = new Color(128, 128, 0, 0);
-GiveAdmAllwaysAreaView.Tags = ['Жетоны'];
-GiveAdmAllwaysAreaView.Enable = true;
-
-var ViewDverTrigger = AreaViewService.GetContext().Get("Ми2")
-ViewDverTrigger.Color = bancolor;
-ViewDverTrigger.Tags = ["Ми2"];
-ViewDverTrigger.Enable = false;
-const DverTrigger = AreaPlayerTriggerService.Get("Ми2")
-DverTrigger.Tags = ["Ми2"];
-DverTrigger.Enable = true;
-DverTrigger.OnEnter.Add(function(p){
-  if (p.Properties.Get('Missia2').Value) {
-    p.Ui.Hint.Value = `Доступ разрешен`;
-  } else {
-    p.Ui.Hint.Value = `У вас нету миссии 2! Идите возмите её!`;
-    p.Spawns.Spawn();
-  }
-});
-
-var ViewSecondaryTrigger = AreaViewService.GetContext().Get("Пар")
-ViewSecondaryTrigger.Color = block;
-ViewSecondaryTrigger.Tags = ["Пар"];
-ViewSecondaryTrigger.Enable = true;
-const BuySecondaryTrigger = AreaPlayerTriggerService.Get("Пар")
-BuySecondaryTrigger.Tags = ["Пар"];
-BuySecondaryTrigger.Enable = true;
-BuySecondaryTrigger.OnEnter.Add(function(player){
-	if (!player.Properties.Get('Missiaa3').Value) {
-		player.PopUp(`<b><size=15><color=lime>Выполнена миссия по прохождению паркура!</color> \n Вы вознаграждаетесь 50000 очками и доступом к 3ей миссии </size></b>`);
-		player.Properties.Scores.Value += 50000;
-		player.Properties.Get('Missiaa3').Value = true;
-	}
-});
-
-var ViewDverTrigger = AreaViewService.GetContext().Get("Миссия3")
-ViewDverTrigger.Color = spawncolor;
-ViewDverTrigger.Tags = ["Миссия3"];
-ViewDverTrigger.Enable = true;
-const DverTrigger = AreaPlayerTriggerService.Get("Миссия3")
-DverTrigger.Tags = ["Миссия3"];
-DverTrigger.Enable = true;
-DverTrigger.OnEnter.Add(function(p){
-  if (p.Properties.Get('Missiaa3').Value) {
-    p.PopUp(`<i><b><color=red>Ты взял миссию 3</color></b></i> \n Она заключается в том, чтобы ты нашел зону серого цвета `);
-    p.Properties.Get('Missia3').Value = true;
-  } else {
-    p.Ui.Hint.Value = `Для начала пройдите миссию 2!`;
-    p.Spawns.Spawn();
-  }
-});
-
-var ViewDverTrigger = AreaViewService.GetContext().Get("Ми3")
-ViewDverTrigger.Color = micolor;
-ViewDverTrigger.Tags = ["Ми3"];
-ViewDverTrigger.Enable = true;
-const DverTrigger = AreaPlayerTriggerService.Get("Ми3")
-DverTrigger.Tags = ["Ми3"];
-DverTrigger.Enable = true;
-DverTrigger.OnEnter.Add(function(p){
-  if (p.Properties.Get('Missia3').Value && !p.Properties.Get('m3').Value) {
-    p.PopUp(`<b><size=15><color=lime>Поздровляю, ты прошел все 3 миссии!</color> \n Вы вознаграждаетесь 100000 очками, статусом - "Непобедимый" и скином зомби. </size></b>`);
-    p.Properties.Scores.Value += 100000;
-    p.contextedProperties.SkinType.Value = 1;
-    p.Properties.Get('Status').Value = '<b><i><color=red>Непобедимый</color></i></b>';
-	p.Properties.Get('m3').Value = true;
-  } else {
-    p.Ui.Hint.Value = `У вас нету миссии 3! Идите возмите её!`;
-    p.Spawns.Spawn();
-  }
-});
-
-var ViewDverTrigger = AreaViewService.GetContext().Get("Миссия2")
-ViewDverTrigger.Color = spawncolor;
-ViewDverTrigger.Tags = ["Миссия2"];
-ViewDverTrigger.Enable = true;
-const DverTrigger = AreaPlayerTriggerService.Get("Миссия2")
-DverTrigger.Tags = ["Миссия2"];
-DverTrigger.Enable = true;
-DverTrigger.OnEnter.Add(function(p){
-  if (p.Properties.Get('Missiaa2').Value) {
-    p.PopUp(`<i><b><color=red>Ты взял миссию 2</color></b></i> \n Она заключается в том, чтоб ты прошел паркур`);
-    p.Properties.Get('Missia2').Value = true;
-  } else {
-    p.Ui.Hint.Value = `Для начала пройдите миссию 1!`;
-    p.Spawns.Spawn();
-  }
 });
