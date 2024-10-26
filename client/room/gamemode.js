@@ -25,12 +25,6 @@ Dmg.DamageOut.Value = true;
 Dmg.FriendlyFire.Value = true;
 BreackGraph.OnlyPlayerBlocksDmg = true;
 
-
-	Teams.Get('Admins').Properties.Get('Deaths').Value = `Игроки: ${Props.Get('Players_Now').Value}/${Players.MaxCount}`;
-	Teams.Get('Players').Properties.Get('Deaths').Value = `Время: ${Props.Get('Time_FixedString').Value}`;
-});
-ServerTimer.RestartLoop(1);
-
 Teams.Add('Players', '<b><i>Игроки</i></b>', new Color(0, 0, 0, 0));
 Teams.Add('Admins', '<b><i>Админы</i></b>', new Color(0, 0, 0, 0));
 let AdminsTeam = Teams.Get('Admins'), PlayersTeam = Teams.Get('Players');
